@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سینا ضرغامی | عکاس و فیلم‌بردار</title>
+    
+    <!-- فونت وزیرمتن برای تایپوگرافی زیبای فارسی -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <!-- تیلویند سی‌اس‌اس برای استایل‌دهی سریع و واکنش‌گرا -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- تنظیمات سفارشی تیلویند و کدهای CSS اختصاصی برای انیمیشن‌ها -->
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #0f172a; /* رنگ پس‌زمینه تیره و مدرن */
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* افکت اسکرول نرم برای کل صفحه */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* استایل‌های مربوط به هیرو سکشن و ویدیوی پس‌زمینه */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15,23,42,0.3) 0%, rgba(15,23,42,1) 100%);
+            z-index: -1;
+        }
+
+        /* کلاس‌هایی برای انیمیشن‌های نمایان شدن المان‌ها (Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* افکت پارالاکس روی موس (عنصر متحرک با موس) */
+        .mouse-parallax {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* افکت‌های چرخشی روی کارت‌ها که درخواست کرده بودید */
+        .hover-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-card:hover {
+            transform: translateY(-10px) rotate(2deg) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            border-color: #3b82f6; /* رنگ آبی ملایم موقع هاور */
+        }
+
+        /* استایل اسکرول‌بار اختصاصی */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- نوار ناوبری (هدر) -->
+    <header class="fixed w-full top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter text-white hover:text-blue-400 transition">SZ.</a>
+            
+            <!-- منوی دسکتاپ -->
+            <nav class="hidden md:flex space-x-8 space-x-reverse">
+                <a href="#about" class="text-slate-300 hover:text-white transition text-sm font-medium">درباره من</a>
+                <a href="#services" class="text-slate-300 hover:text-white transition text-sm font-medium">تخصص‌ها</a>
+                <a href="#portfolio" class="text-slate-300 hover:text-white transition text-sm font-medium">نمونه‌کارها</a>
+                <a href="#gear" class="text-slate-300 hover:text-white transition text-sm font-medium">تجهیزات</a>
+                <a href="#contact" class="text-slate-300 hover:text-white transition text-sm font-medium">تماس</a>
+            </nav>
+
+            <!-- دکمه منوی موبایل -->
+            <button class="md:hidden text-slate-300 hover:text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- بخش هیرو (ویدیوی پس‌زمینه و تیتر اصلی) -->
+    <section id="hero" class="hero-section">
+        <!-- ویدیوی جایگزین - بعداً لینک مستقیم گوگل درایو شما اینجا قرار می‌گیرد -->
+        <video class="video-bg" autoplay loop muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-photographer-taking-pictures-of-a-model-in-a-studio-34444-large.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        
+        <div class="relative z-10 text-center px-4 mouse-parallax">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-2xl text-white">سینا ضرغامی</h1>
+            <p class="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto drop-shadow-lg leading-relaxed">
+                عکاس، فیلم‌بردار و راهنمای سفرهای تجربه‌محور
+            </p>
+            <a href="#portfolio" class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(37,99,235,0.3)]">
+                مشاهده پروژه‌ها
+            </a>
+        </div>
+        
+        <!-- انیمیشن اسکرول به پایین -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-slate-400"></i>
+        </div>
+    </section>
+
+    <!-- بخش درباره من -->
+    <section id="about" class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 reveal">
+                    <!-- عکس پروفایل موقت - با عکس شما جایگزین می‌شود -->
+                    <div class="relative rounded-2xl overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1554046920-90dc2d3ac462?q=80&w=800&auto=format&fit=crop" alt="سینا ضرغامی" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white border-r-4 border-blue-500 pr-4">روایت‌گر داستان‌ها</h2>
+                    <p class="text-slate-400 leading-loose mb-6 text-lg text-justify">
+                        من سینا ضرغامی هستم. دنیای من از دریچه لنز دوربین و مسیرهای کشف‌نشده تعریف می‌شود. تخصص من ثبت لحظاتی است که کلمات از بیان آن‌ها قاصرند. چه در دل طبیعت وحشی و چه در شلوغی‌های فضای شهری، من اینجا هستم تا ایده‌های شما را به تصاویر ماندگار تبدیل کنم.
+                    </p>
+                    <p class="text-slate-400 leading-loose mb-8 text-lg">
+                        <i class="fas fa-map-marker-alt text-blue-500 ml-2"></i> <strong>پایگاه اصلی:</strong> تهران (آماده اجرای پروژه و فیلم‌برداری در سراسر ایران)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تخصص‌ها (با افکت‌های حرکتی درخواستی) -->
+    <section id="services" class="py-24 bg-slate-950">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">حوزه‌های تخصص</h2>
+                <p class="text-slate-400">ترکیب هنر، ماجراجویی و آموزش</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- کارت ۱ -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl hover-card reveal">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">عکاسی و فیلم‌برداری</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        تولید محتوای بصری حرفه‌ای برای پروژه‌های شخصی، تجاری و مستند. ثبت تصاویری با بالاترین کیفیت و نگاهی هنری.
+                    </p>
+                </div>
+
+                <!-- کارت ۲ -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl hover-card reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-route text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">طراحی مسیر و تورلیدری</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        برنامه‌ریزی و اجرای سفرهای تجربه‌محور. کشف لوکیشن‌های بکر برای فیلم‌برداری و خلق یک ماجراجویی فراموش‌نشدنی.
+                    </p>
+                </div>
+
+                <!-- کارت ۳ -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl hover-card reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chalkboard-teacher text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">آموزش و تدریس</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        انتقال تجربه و دانش فنی به علاقه‌مندان. سابقه تدریس در مجتمع فنی تهران و برگزاری ورکشاپ‌های تخصصی.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش نمونه کارها -->
+    <section id="portfolio" class="py-24 bg-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">گزیده پروژه‌ها</h2>
+                <p class="text-slate-400">نگاهی به جهان از زاویه دید من</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- جایگاه عکس‌های درایو شما -->
+                <div class="relative overflow-hidden rounded-xl aspect-[4/5] group hover-card reveal">
+                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="نمونه کار">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">عکاسی طبیعت</h4>
+                        <p class="text-blue-400 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">پروژه مستند</p>
+                    </div>
+                </div>
+                
+                <div class="relative overflow-hidden rounded-xl aspect-[4/5] group hover-card reveal" style="transition-delay: 100ms;">
+                    <img src="https://images.unsplash.com/photo-1574768395982-f67232204c3e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="نمونه کار">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">ویدیوگرافی شهری</h4>
+                        <p class="text-blue-400 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">تیزر تبلیغاتی</p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl aspect-[4/5] group hover-card reveal" style="transition-delay: 200ms;">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="نمونه کار">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h4 class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">تورلیدری</h4>
+                        <p class="text-blue-400 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">سفرهای ماجراجویانه</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تجهیزات -->
+    <section id="gear" class="py-24 bg-slate-950">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">تجهیزات حرفه‌ای من</h2>
+                <p class="text-slate-400">ابزارهایی که ایده‌ها را به واقعیت تبدیل می‌کنند</p>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <!-- آیتم ۱ -->
+                <div class="flex items-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-blue-500/50 transition-colors">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center ml-4 shrink-0">
+                        <i class="fas fa-camera text-slate-300"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg">Canon EOS R8</h4>
+                        <p class="text-slate-400 text-sm">به همراه لنز RF24-50mm F4.5-6.3 IS STM</p>
+                    </div>
+                </div>
+                
+                <!-- آیتم ۲ -->
+                <div class="flex items-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-blue-500/50 transition-colors">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center ml-4 shrink-0">
+                        <i class="fas fa-video text-slate-300"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg">GoPro Max</h4>
+                        <p class="text-slate-400 text-sm">برای ثبت تصاویر اکشن و ۳۶۰ درجه در شرایط سخت</p>
+                    </div>
+                </div>
+
+                <!-- آیتم ۳ -->
+                <div class="flex items-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-blue-500/50 transition-colors">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center ml-4 shrink-0">
+                        <i class="fas fa-lightbulb text-slate-300"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-lg">SEPTA R330 COB</h4>
+                        <p class="text-slate-400 text-sm">تجهیزات نورپردازی استودیویی و پرتابل</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تماس -->
+    <section id="contact" class="py-24 bg-slate-900 relative">
+        <div class="container mx-auto px-6 text-center reveal">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">آماده شروع یک پروژه جدید هستید؟</h2>
+            <p class="text-slate-400 mb-10 max-w-2xl mx-auto text-lg">
+                برای رزرو زمان عکاسی، مشاوره تورلیدری یا همکاری در پروژه‌های ویدیویی از طریق راه‌های زیر با من در ارتباط باشید.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://instagram.com/sina.zarghami" target="_blank" class="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full font-bold transition-transform hover:scale-105">
+                    <i class="fab fa-instagram text-xl"></i> اینستاگرام
+                </a>
+                <a href="#" class="flex items-center gap-3 px-8 py-4 bg-[#0088cc] hover:bg-[#0077b5] text-white rounded-full font-bold transition-transform hover:scale-105">
+                    <i class="fab fa-telegram text-xl"></i> تلگرام
+                </a>
+                <a href="mailto:info@sinazarghami.com" class="flex items-center gap-3 px-8 py-4 bg-slate-700 hover:bg-slate-600 text-white rounded-full font-bold transition-transform hover:scale-105">
+                    <i class="fas fa-envelope text-xl"></i> ایمیل
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="bg-slate-950 py-8 border-t border-slate-900 text-center">
+        <p class="text-slate-500 text-sm">
+            © 2024 سینا ضرغامی. تمامی حقوق محفوظ است.
+        </p>
+    </footer>
+
+    <!-- کدهای جاوااسکریپت برای انیمیشن‌ها و افکت‌ها -->
+    <script>
+        // ۱. افکت نمایان شدن (Reveal) هنگام اسکرول
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // اختیاری: بعد از نمایان شدن، نظارت متوقف شود تا انیمیشن فقط یک بار اجرا شود
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.1, // وقتی 10 درصد المان وارد صفحه شد انیمیشن اجرا شود
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // ۲. افکت پارالاکس روی موس برای هیرو سکشن
+        const heroSection = document.getElementById('hero');
+        const parallaxTarget = document.querySelector('.mouse-parallax');
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            // محاسبه موقعیت موس نسبت به مرکز صفحه
+            const mouseX = e.clientX - windowWidth / 2;
+            const mouseY = e.clientY - windowHeight / 2;
+            
+            // اعمال حرکت بسیار نرم و معکوس (میزان جابه‌جایی را با تغییر اعداد تنظیم کنید)
+            const moveX = (mouseX * -0.02);
+            const moveY = (mouseY * -0.02);
+            
+            parallaxTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        // بازگرداندن به حالت اولیه وقتی موس خارج می‌شود
+        heroSection.addEventListener('mouseleave', () => {
+            parallaxTarget.style.transform = `translate(0px, 0px)`;
+        });
+
+        // ۳. تغییر استایل هدر هنگام اسکرول
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-slate-900/95');
+                header.classList.remove('bg-slate-900/80');
+            } else {
+                header.classList.remove('shadow-lg', 'bg-slate-900/95');
+                header.classList.add('bg-slate-900/80');
+            }
+        });
+    </script>
+</body>
+</html>
